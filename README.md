@@ -2,7 +2,7 @@
 
 A minimal Docker image combining **PostgreSQL 18**, **PostGIS 3.6.1**, and **TimescaleDB 2.25.2**, built on Alpine Linux 3.23.
 
-[![Build and Push Docker Image](https://github.com/<your-username>/<your-repo>/actions/workflows/build.yml/badge.svg)](https://github.com/<your-username>/<your-repo>/actions/workflows/build.yml)
+[![Build and Push Docker Image](https://github.com/32u-nd/postgres-postgis-timescaledb/actions/workflows/build.yml/badge.svg)](https://github.com/32u-nd/postgres-postgis-timescaledb/actions/workflows/build.yml)
 ![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm64-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -25,7 +25,7 @@ docker run -d \
   -e POSTGRES_USER=youruser \
   -v pgdata:/var/lib/postgresql \
   -p 5432:5432 \
-  ghcr.io/<your-username>/<your-repo>:latest
+  ghcr.io/32u-nd/postgres-postgis-timescaledb:latest
 ```
 
 > **Note:** The volume must be mounted to `/var/lib/postgresql` (not `/var/lib/postgresql/data`).
@@ -37,7 +37,7 @@ docker run -d \
 ```yaml
 services:
   db:
-    image: ghcr.io/<your-username>/<your-repo>:latest
+    image: ghcr.io/32u-nd/postgres-postgis-timescaledb:latest
     environment:
       POSTGRES_PASSWORD: yourpassword
       POSTGRES_DB: yourdb
