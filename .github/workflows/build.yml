@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
