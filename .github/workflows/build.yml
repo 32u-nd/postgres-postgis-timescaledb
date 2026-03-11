@@ -1,5 +1,4 @@
 name: Build and Push Docker Image
-
 on:
   push:
     tags:
@@ -17,7 +16,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,7 +37,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Derive image tags automatically:
-      #   main branch  → :latest
       #   tag v1.2.3   → :1.2.3 and :1.2 and :1
       #   pull request → no push, build only (smoke test)
       - name: Extract image metadata
@@ -57,22 +54,10 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          # Only push on main branch or tags, not on pull requests
+          # Only push on tags or manual trigger, not on pull requests
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           # Cache layers via GitHub Actions cache to speed up subsequent builds
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      # Make the package publicly visible after first push.
-      # This is idempotent — safe to run on every push.
-      - name: Make package public
-        if: github.event_name != 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.request('PATCH /user/packages/container/{package_name}', {
-              package_name: context.repo.repo,
-              visibility: 'public'
-            });
