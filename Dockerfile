@@ -1,5 +1,5 @@
 # =================================================================
-# PostgreSQL 18 + PostGIS 3.6.1 + TimescaleDB 2.25.2 on Alpine 3.23
+# PostgreSQL 18 + PostGIS 3.6.2 + TimescaleDB 2.25.2 on Alpine 3.23
 # =================================================================
 
 # final image size ~ 530 MB
@@ -8,8 +8,8 @@ FROM postgres:18.3-alpine3.23
 
 # All versions and checksums in one place — overridable via --build-arg
 ARG ALPINE_VERSION=v3.23
-ARG POSTGIS_VERSION=3.6.1
-ARG POSTGIS_SHA256=849391e75488a749663fbc8d63b846d063d387d286c04dea062820476f84c8f6
+ARG POSTGIS_VERSION=3.6.2
+ARG POSTGIS_SHA256=607a4d21c017e5283e15d2d977c9b7f575ddfc672afdee81fc84a2d823db4ba5
 ARG TIMESCALEDB_VERSION=2.25.2
 ARG TIMESCALEDB_SHA256=179d281a4977cdb29ad4416affdc00015d217bb79450e073ea7e8e144f9da9b4
 
