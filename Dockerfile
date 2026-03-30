@@ -1,5 +1,5 @@
 # =================================================================
-# PostgreSQL 18 + PostGIS 3.6.2 + TimescaleDB 2.25.2 on Alpine 3.23
+# PostgreSQL 18 + PostGIS 3.6.2 + TimescaleDB 2.26.1 on Alpine 3.23
 # =================================================================
 
 # final image size ~ 530 MB
@@ -10,8 +10,8 @@ FROM postgres:18.3-alpine3.23
 ARG ALPINE_VERSION=v3.23
 ARG POSTGIS_VERSION=3.6.2
 ARG POSTGIS_SHA256=607a4d21c017e5283e15d2d977c9b7f575ddfc672afdee81fc84a2d823db4ba5
-ARG TIMESCALEDB_VERSION=2.25.2
-ARG TIMESCALEDB_SHA256=179d281a4977cdb29ad4416affdc00015d217bb79450e073ea7e8e144f9da9b4
+ARG TIMESCALEDB_VERSION=2.26.1
+ARG TIMESCALEDB_SHA256=cb5fff843f79a69d9e0b67f4166fd1a5726683a491641ee272e746143ac56313
 
 # PG18: PGDATA path is now version-specific (/var/lib/postgresql/18/docker)
 # Volumes should be mounted to /var/lib/postgresql (without /data)
