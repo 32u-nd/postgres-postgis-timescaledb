@@ -1,17 +1,17 @@
 # =================================================================
-# PostgreSQL 18 + PostGIS 3.6.2 + TimescaleDB 2.26.1 on Alpine 3.23
+# PostgreSQL 18.4 + PostGIS 3.6.3 + TimescaleDB 2.27.1 on Alpine 3.23
 # =================================================================
 
 # final image size ~ 530 MB
 
-FROM postgres:18.3-alpine3.23
+FROM postgres:18.4-alpine3.23
 
 # All versions and checksums in one place — overridable via --build-arg
 ARG ALPINE_VERSION=v3.23
-ARG POSTGIS_VERSION=3.6.2
-ARG POSTGIS_SHA256=607a4d21c017e5283e15d2d977c9b7f575ddfc672afdee81fc84a2d823db4ba5
-ARG TIMESCALEDB_VERSION=2.26.1
-ARG TIMESCALEDB_SHA256=cb5fff843f79a69d9e0b67f4166fd1a5726683a491641ee272e746143ac56313
+ARG POSTGIS_VERSION=3.6.3
+ARG POSTGIS_SHA256=3ab7714ff1d0f7944855d21546d24e5f7ecf6b931c72472a2bfa30e188a33093
+ARG TIMESCALEDB_VERSION=2.27.1
+ARG TIMESCALEDB_SHA256=f0a940720bb5b0b635dae4d8aeceb13e83b196b8aab8717876af0f45efa47ab6
 
 # PG18: PGDATA path is now version-specific (/var/lib/postgresql/18/docker)
 # Volumes should be mounted to /var/lib/postgresql (without /data)
@@ -19,9 +19,9 @@ ENV PGDATA=/var/lib/postgresql/18/docker
 
 # OCI-compliant image labels
 LABEL org.opencontainers.image.title="PostgreSQL + PostGIS + TimescaleDB" \
-      org.opencontainers.image.description="PostgreSQL 18 with PostGIS ${POSTGIS_VERSION} and TimescaleDB ${TIMESCALEDB_VERSION} on Alpine ${ALPINE_VERSION}" \
-      org.opencontainers.image.version="18.3" \
-      org.opencontainers.image.base.name="postgres:18.3-alpine${ALPINE_VERSION}" \
+      org.opencontainers.image.description="PostgreSQL 18.4 with PostGIS ${POSTGIS_VERSION} and TimescaleDB ${TIMESCALEDB_VERSION} on Alpine ${ALPINE_VERSION}" \
+      org.opencontainers.image.version="18.4" \
+      org.opencontainers.image.base.name="postgres:18.4-alpine${ALPINE_VERSION}" \
       org.opencontainers.image.authors="https://github.com/32u-nd"
 
 # ---------------------------------------------------------------------------
