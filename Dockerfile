@@ -1,5 +1,5 @@
 # =================================================================
-# PostgreSQL 18.4 + PostGIS 3.6.3 + TimescaleDB 2.27.2 on Alpine 3.23
+# PostgreSQL 18.4 + PostGIS 3.6.4 + TimescaleDB 2.28.1 on Alpine 3.23
 # =================================================================
 
 # final image size ~ 530 MB
@@ -8,10 +8,10 @@ FROM postgres:18.4-alpine3.23
 
 # All versions and checksums in one place — overridable via --build-arg
 ARG ALPINE_VERSION=v3.23
-ARG POSTGIS_VERSION=3.6.3
-ARG POSTGIS_SHA256=3ab7714ff1d0f7944855d21546d24e5f7ecf6b931c72472a2bfa30e188a33093
-ARG TIMESCALEDB_VERSION=2.27.2
-ARG TIMESCALEDB_SHA256=ba47569618b8b8e6b2d58ee27bb0429b8f7954dac3edbcf1ff6ecd6bdc479316
+ARG POSTGIS_VERSION=3.6.4
+ARG POSTGIS_SHA256=4f80e1a4d227f088ae818f79180debd5894c075615823e0f556f73479cf1f200
+ARG TIMESCALEDB_VERSION=2.28.1
+ARG TIMESCALEDB_SHA256=ae582d545b1364d7df0deeba862161c021d9df82e9bb281f7f57ddaa686a6a44
 
 # PG18: PGDATA path is now version-specific (/var/lib/postgresql/18/docker)
 # Volumes should be mounted to /var/lib/postgresql (without /data)
@@ -39,8 +39,8 @@ RUN set -eux \
         automake \
         build-base \
         ca-certificates \
-        clang19 \
-        clang19-dev \
+        clang21 \
+        clang21-dev \
         cmake \
         coreutils \
         dpkg \
@@ -56,8 +56,8 @@ RUN set -eux \
         libc-dev \
         libtool \
         libxml2-dev \
-        llvm19 \
-        llvm19-dev \
+        llvm21 \
+        llvm21-dev \
         make \
         openssl \
         openssl-dev \
@@ -79,13 +79,13 @@ RUN set -eux \
         protobuf-c \
     \
     # --- Prepare LLVM/Clang for PostgreSQL extension builds ---
-    # Makefile.global contains the hardcoded compiler from the PG build (clang-19).
-    # The clang19 package provides /usr/bin/clang-19, but llvm-lto only exists
-    # under /usr/lib/llvm19/bin/ — create symlinks into PATH.
-    && ln -sf /usr/lib/llvm19/bin/llvm-lto  /usr/local/bin/llvm-lto \
-    && ln -sf /usr/lib/llvm19/bin/llvm-lto2 /usr/local/bin/llvm-lto2 \
+    # Makefile.global contains the hardcoded compiler from the PG build (clang-21).
+    # The clang21 package provides /usr/bin/clang-21, but llvm-lto only exists
+    # under /usr/lib/llvm21/bin/ — create symlinks into PATH.
+    && ln -sf /usr/lib/llvm21/bin/llvm-lto  /usr/local/bin/llvm-lto \
+    && ln -sf /usr/lib/llvm21/bin/llvm-lto2 /usr/local/bin/llvm-lto2 \
     && MAKEFILE_GLOBAL=$(dirname "$(dirname "$(pg_config --pgxs)")")/Makefile.global \
-    && sed -i "s|^CLANG *=.*|CLANG = /usr/bin/clang-19|" "${MAKEFILE_GLOBAL}" \
+    && sed -i "s|^CLANG *=.*|CLANG = /usr/bin/clang-21|" "${MAKEFILE_GLOBAL}" \
     \
     # =========================================================================
     # PostGIS

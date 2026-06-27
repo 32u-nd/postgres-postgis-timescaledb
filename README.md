@@ -1,6 +1,6 @@
 # PostgreSQL + PostGIS + TimescaleDB on Alpine
 
-A minimal Docker image combining **PostgreSQL 18.4**, **PostGIS 3.6.3**, and **TimescaleDB 2.27.2**, built on Alpine Linux 3.23.
+A minimal Docker image combining **PostgreSQL 18.4**, **PostGIS 3.6.4**, and **TimescaleDB 2.28.1**, built on Alpine Linux 3.23.
 
 [![Build and Push Docker Image](https://github.com/32u-nd/postgres-postgis-timescaledb/actions/workflows/build.yml/badge.svg)](https://github.com/32u-nd/postgres-postgis-timescaledb/actions/workflows/build.yml)
 ![Platforms](https://img.shields.io/badge/platforms-amd64%20%7C%20arm64-blue)
@@ -11,8 +11,8 @@ A minimal Docker image combining **PostgreSQL 18.4**, **PostGIS 3.6.3**, and **T
 | Component    | Version |
 |--------------|---------|
 | PostgreSQL   | 18.4    |
-| PostGIS      | 3.6.3   |
-| TimescaleDB  | 2.27.2  |
+| PostGIS      | 3.6.4   |
+| TimescaleDB  | 2.28.1  |
 | Alpine Linux | 3.23    |
 
 ## Quick Start
@@ -80,9 +80,9 @@ All versions and checksums can be overridden at build time:
 
 ```bash
 docker build \
-  --build-arg POSTGIS_VERSION=3.6.3 \
+  --build-arg POSTGIS_VERSION=3.6.4 \
   --build-arg POSTGIS_SHA256=<sha256> \
-  --build-arg TIMESCALEDB_VERSION=2.27.2 \
+  --build-arg TIMESCALEDB_VERSION=2.28.1 \
   --build-arg TIMESCALEDB_SHA256=<sha256> \
   -t my-postgres .
 ```
