@@ -1,13 +1,13 @@
 # =================================================================
-# PostgreSQL 18.4 + PostGIS 3.6.4 + TimescaleDB 2.28.3 on Alpine 3.23
+# PostgreSQL 18.4 + PostGIS 3.6.4 + TimescaleDB 2.28.3 on Alpine 3.24
 # =================================================================
 
 # final image size ~ 550 MB
 
-FROM postgres:18.4-alpine3.23
+FROM postgres:18.4-alpine3.24
 
 # All versions and checksums in one place — overridable via --build-arg
-ARG ALPINE_VERSION=v3.23
+ARG ALPINE_VERSION=v3.24
 ARG POSTGIS_VERSION=3.6.4
 ARG POSTGIS_SHA256=4f80e1a4d227f088ae818f79180debd5894c075615823e0f556f73479cf1f200
 ARG TIMESCALEDB_VERSION=2.28.3
