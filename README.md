@@ -74,6 +74,12 @@ On first start, `init-db.sh` is executed automatically and:
 
 On subsequent starts with an existing volume, the script is skipped entirely by PostgreSQL.
 
+All `psql` calls in `init-db.sh` connect explicitly via `--dbname "$POSTGRES_DB"`.
+Without it, `psql` connects to a database named after `$POSTGRES_USER`, which
+never exists — only `$POSTGRES_DB` is created. On a non-empty volume this
+script never runs, so the bug was invisible; it only surfaces on an empty
+volume, which is exactly the disaster-recovery case.
+
 ## Build Arguments
 
 All versions and checksums can be overridden at build time:

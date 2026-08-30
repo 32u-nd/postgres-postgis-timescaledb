@@ -9,14 +9,25 @@ set -e
 # ---------------------------------------------------------------------------
 
 # Check if template_postgis already exists (safety guard for edge cases)
-DB_EXISTS=$(psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --tuples-only --no-align \
+#
+# --dbname is required, not optional: without it psql connects to a database
+# named after the user ($POSTGRES_USER). The entrypoint creates $POSTGRES_DB,
+# never a database named after the user, so that connection fails with
+# 'FATAL: database "<user>" does not exist' and, because the entrypoint runs
+# under set -e, aborts the whole container start.
+#
+# This only surfaces on an EMPTY data directory - which is exactly what a
+# disaster recovery is. Observed 2026-08-30 while verifying the restore path
+# of signalamplitu.de: the container never came up.
+DB_EXISTS=$(psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" \
+    --tuples-only --no-align \
     -c "SELECT 1 FROM pg_database WHERE datname = 'template_postgis';")
 
 if [ "$DB_EXISTS" = "1" ]; then
     echo "template_postgis already exists, skipping creation."
 else
     echo "Creating template_postgis..."
-    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
         CREATE DATABASE template_postgis;
         UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL
