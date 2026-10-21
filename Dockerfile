@@ -1,10 +1,10 @@
 # =================================================================
-# PostgreSQL 18.4 + PostGIS 3.6.4 + TimescaleDB 2.31.0 on Alpine 3.24
+# PostgreSQL 18.6 + PostGIS 3.6.4 + TimescaleDB 2.31.0 on Alpine 3.24
 # =================================================================
 
 # final image size ~ 550 MB
 
-FROM postgres:18.4-alpine3.24
+FROM postgres:18.6-alpine3.24
 
 # All versions and checksums in one place — overridable via --build-arg
 ARG ALPINE_VERSION=v3.24
@@ -19,9 +19,9 @@ ENV PGDATA=/var/lib/postgresql/18/docker
 
 # OCI-compliant image labels
 LABEL org.opencontainers.image.title="PostgreSQL + PostGIS + TimescaleDB" \
-      org.opencontainers.image.description="PostgreSQL 18.4 with PostGIS ${POSTGIS_VERSION} and TimescaleDB ${TIMESCALEDB_VERSION} on Alpine ${ALPINE_VERSION}" \
-      org.opencontainers.image.version="18.4" \
-      org.opencontainers.image.base.name="postgres:18.4-alpine${ALPINE_VERSION}" \
+      org.opencontainers.image.description="PostgreSQL 18.6 with PostGIS ${POSTGIS_VERSION} and TimescaleDB ${TIMESCALEDB_VERSION} on Alpine ${ALPINE_VERSION}" \
+      org.opencontainers.image.version="18.6" \
+      org.opencontainers.image.base.name="postgres:18.6-alpine${ALPINE_VERSION}" \
       org.opencontainers.image.authors="https://github.com/32u-nd"
 
 # ---------------------------------------------------------------------------
