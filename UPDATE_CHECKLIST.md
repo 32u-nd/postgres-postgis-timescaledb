@@ -9,7 +9,7 @@
 - [ ] Verify **TimescaleDB** supports the new PostgreSQL major version
       `https://docs.timescale.com/self-hosted/latest/upgrades/`
 - [ ] Check Alpine version compatibility with `clang`/`llvm` packages
-      (package names like `clang19`, `llvm19` are version-specific)
+      (package names like `clang21`, `llvm21` are version-specific)
 
 ## 2. Update SHA256 Checksums
 
@@ -28,8 +28,8 @@
 - [ ] Update `FROM postgres:<version>-alpine<version>`
 - [ ] Update `ARG ALPINE_VERSION`, `POSTGIS_VERSION`, `TIMESCALEDB_VERSION`
 - [ ] Update `LABEL` fields (`image.version`, `image.description`, `image.base.name`)
-- [ ] Check if `clang`/`llvm` package names need updating (e.g. `clang19` → `clang20`)
-      and update the hardcoded `/usr/bin/clang-19` path in the `sed` command accordingly
+- [ ] Check if `clang`/`llvm` package names need updating (e.g. `clang21` → `clang22`)
+      and update the hardcoded `/usr/bin/clang-21` path in the `sed` command accordingly
 - [ ] On **PostgreSQL major version upgrade**: check if `ENV PGDATA` path needs updating
       (PG18+: `/var/lib/postgresql/<major>/docker`)
 
